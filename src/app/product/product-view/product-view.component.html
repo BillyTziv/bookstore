@@ -1,0 +1,71 @@
+<div class="bg-white p-4">
+    <div class="row">
+        <div class="col-4">
+            <img mat-card-image width="100%" [src]="book?.image || 'https://placehold.co/150x120'" class="book-cover-image" alt="{{ book?.title }}">
+        </div>
+        <div class="col">
+            <div class="d-flex flex-row align-items-center justify-content-between my-2">
+                <!-- Book Title -->
+                <h1 *ngIf="book?.title; else bookTitleShimmerEffect" class="flex-grow-1 fw-bold mb-0">
+                    {{ book?.title }}
+                </h1>
+
+                <!-- Book Title Shimmering Effect -->
+                <ng-template #bookTitleShimmerEffect>
+                    <h1 class="flex-grow-1 fw-bold mb-0 shimmer-effect">&nbsp;</h1>
+                </ng-template>
+
+                <!-- Action Buttons -->
+                <div class="d-flex flex-row">
+                    <button mat-icon-button color="warn" aria-label="Example icon button with a share icon">
+                        <mat-icon>share</mat-icon>
+                    </button>
+              
+                    <button mat-icon-button color="warn" aria-label="Example icon button with a favorite icon">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div *ngIf="book?.author" class="d-flex flex-row">
+                by
+                <span class="d-flex flex-grow-1 fw-bold px-2">
+                    {{ getAuthorNames() }}
+                </span>
+            </div>
+
+            <div class="py-3">
+                <app-item-rating
+                    [rating]="book?.rating ?? 0"
+                ></app-item-rating>
+            </div>
+
+            <!-- Book Description -->
+            <p *ngIf="book?.description; else bookDescShimmerEffect" class="d-flex flex-grow-1 my-2">
+                {{ book?.description }}
+            </p>
+
+            <!-- Book Description Shimmering Effect -->
+            <ng-template #bookDescShimmerEffect>
+                <p class="flex-grow-1 shimmer-effect py-4">&nbsp;</p>
+            </ng-template>
+
+            <!-- Book Properties -->
+            <div class="grid-container my-1" *ngFor="let book of bookProperties">
+                <div class="label">{{ book.label }}</div>
+                <div>:</div>
+                <div class="value">{{ book.value }}</div>
+            </div>
+
+            <div class="d-flex flex-row my-3">
+                <button mat-flat-button color="primary">
+                    <mat-icon>shopping_cart</mat-icon>
+                    Buy
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommended Books -->
+    <app-recommended-books></app-recommended-books>
+</div>

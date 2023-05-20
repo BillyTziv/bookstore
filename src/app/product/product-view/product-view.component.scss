@@ -1,0 +1,31 @@
+/* Used to display all the book properties */
+.grid-container {
+  display: grid;
+  grid-template-columns: 150px 5px auto;
+  grid-gap: 10px;
+}
+
+.grid-container .label {
+  font-weight: bold;
+}
+
+/* Used to add a shimmering loading effect */
+.shimmer-effect {
+  background-image: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  animation: shimmer-animation 1s infinite linear;
+}
+
+@keyframes shimmer-animation {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.book-cover-image img {
+  max-width: 250px;
+}
