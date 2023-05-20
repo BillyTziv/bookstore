@@ -1,0 +1,16 @@
+<div class="d-flex align-items-center">
+    <div class="stars me-2">
+        <div class="rating">
+            <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" 
+                class="star" 
+                [class.full]="i < rating" 
+                [class.empty]="i >= rating">
+                <i class="bi bi-star-fill"></i>
+            </span>
+        </div>
+    </div>
+
+    <span  class="me-2">
+        <strong>{{ rating || 0 }}/{{ MAX_RATING }}</strong>
+    </span>
+</div>
