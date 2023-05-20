@@ -1,0 +1,14 @@
+<div class="book-list d-flex flex-column" class="mt-5">
+    <h2 class="my-3">Other books you may like</h2>
+
+    <div class="book-container d-flex flex-row flex-wrap justify-content-between">
+        <div *ngFor="let book of visibleBooks; let bIndex = index" class="book mx-4" style="max-width: 200px;">
+            <img width="200" [src]="book?.image || 'https://placehold.co/200x200'" class="book-cover-image" alt="{{ book?.title }}">
+
+            <div class="book-title">
+                <h3 class="fw-bold">{{ book.title }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+  
