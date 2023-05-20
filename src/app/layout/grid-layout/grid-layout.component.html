@@ -1,0 +1,14 @@
+<div class="grid-container">
+    <div *ngFor="let book of data; let bIndex = index" class="grid-item">
+        <app-grid-layout-item
+            [item]="book"
+            [bookIndex]="bIndex"
+        ></app-grid-layout-item>
+    </div>
+</div>
+
+<div *ngIf="data.length === 0" class="no-results">
+    <div class="shadow bg-white rounded p-4 border full-width">
+        <h1 class="text-center my-2">No books found!</h1>
+    </div>
+</div>
