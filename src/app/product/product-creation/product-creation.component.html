@@ -1,0 +1,153 @@
+
+<div class="bg-white p-4">
+    <h1>Add New Book</h1>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="bookForm">
+        <div class="d-flex flex-column">
+
+            <!-- Title -->         
+            <mat-form-field appearance="fill">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
+                
+                <mat-error *ngIf="hasError('title', 'required')">Title is required.</mat-error>
+                <mat-error *ngIf="hasError('title', 'minlength')">Title should have at least 10 characters.</mat-error>
+                <mat-error *ngIf="hasError('title', 'maxlength')">Title should have at most 120 characters.</mat-error>
+                <mat-error *ngIf="hasError('title', 'pattern')">Title should contain only letters, numbers, and special characters (@, ”, #, &, *, !).</mat-error>
+            </mat-form-field>
+
+            <!-- Description -->
+            <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" rows="3"></textarea>
+
+                <mat-error *ngIf="hasError('description', 'required')">Description is required.</mat-error>
+                <mat-error *ngIf="hasError('description', 'maxlength')">Description should have at most 512 characters.</mat-error>
+                <mat-error *ngIf="hasError('description', 'pattern')">Description should start with the first letter to be uppercase.</mat-error>
+            </mat-form-field>
+
+            <!-- Categories -->
+            <mat-form-field appearance="fill">
+                <mat-label>Categories</mat-label>
+
+                <mat-select formControlName="categories"  multiple="true">
+                    <mat-option *ngFor="let category of bookCategoryDropdown" [value]="category.id">
+                        {{ category.name }}
+                    </mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="hasError('categories', 'required')">Category is required.</mat-error>
+                <mat-error *ngIf="hasError('categories', 'maxlength')">Categories should be at most 4.</mat-error>
+            </mat-form-field>
+
+            <!-- Author Names -->
+            <div class="d-flex flex-row">
+                <mat-form-field appearance="fill" class="flex-grow-1">
+                    <mat-label>Author Name</mat-label>
+                    <input matInput [formControl]="authorName">
+                    <mat-hint class="py-1">Type an author name and then click <strong>ADD AUTHOR</strong>, to add him on the author list!</mat-hint>
+
+                    <mat-error *ngIf="hasError('author', 'required')">Author Name is required.</mat-error>
+                    <mat-error *ngIf="author.hasError('required')">Author Name is required.</mat-error>
+                    <mat-error class="py-1" *ngIf="hasError('author', 'maxLength')">Author Names should be at most 3.</mat-error>
+                </mat-form-field>
+
+                <button (click)="addAuthor(authorName.value)" mat-stroked-button color="primary" type="button" class="mx-2 input-action-btn">
+                    ADD AUTHOR
+                </button>
+            </div>
+            <div *ngIf="bookForm.get('author')?.value.length > 0" class="author-chips-wrapper mb-3">
+                <div *ngFor="let author of bookForm.get('author')?.value; let authorIndex = index" class="author-chip">
+                    <span>{{ author }}</span>
+                    <button (click)="removeAuthor( authorIndex )" mat-icon-button color="primary">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Publisher -->
+            <mat-form-field appearance="fill">
+                <mat-label>Publisher</mat-label>
+                <input matInput formControlName="publisher">
+
+                <mat-error *ngIf="hasError('publisher', 'required')">Publisher is required.</mat-error>
+                <mat-error *ngIf="hasError('publisher', 'minlength')">Publisher should have at least 5 characters.</mat-error>
+                <mat-error *ngIf="hasError('publisher', 'maxlength')">Publisher should have at most 60 characters.</mat-error>
+            </mat-form-field>
+
+            <!-- Published Year -->
+            <mat-form-field>
+                <mat-label>Published Year</mat-label>
+                <input matInput type="number" formControlName="published">
+
+                <mat-error *ngIf="hasError('published', 'required')">Published Year is required.</mat-error>
+                <mat-error *ngIf="hasError('published', 'minlength')">Published Year should have exact 4 digits.</mat-error>
+                <mat-error *ngIf="hasError('published', 'maxlength')">Published Year should have exact 4 digits.</mat-error>
+                <mat-error *ngIf="hasError('published', 'pattern')">Published Year should have exact 4 digits.</mat-error>
+            </mat-form-field>
+
+            <!-- Page Numbers -->
+            <mat-form-field appearance="fill">
+                <mat-label>No. of Pages</mat-label>
+                <input matInput type="number" formControlName="pages">
+
+                <mat-error *ngIf="hasError('pages', 'required')">No. of Pages is required.</mat-error>
+                <mat-error *ngIf="hasError('pages', 'max')">No. of Pages should be at most 9999.</mat-error>
+
+            </mat-form-field>
+
+            <!-- ISBN-10 -->
+            <mat-form-field appearance="fill">
+                <mat-label>ISBN-10</mat-label>
+                <input matInput type="number" formControlName="isbn">
+
+                <mat-error *ngIf="hasError('isbn', 'required')">ISBN-10 is required.</mat-error>
+                <mat-error *ngIf="hasError('isbn', 'maxlength')">ISBN-10 should have exactly 10 digits.</mat-error>
+                <mat-error *ngIf="hasError('isbn', 'minlength')">ISBN-10 should have exactly 10 digits.</mat-error>
+                <mat-error *ngIf="hasError('isbn', 'pattern')">ISBN-10 should have exactly 10 digits.</mat-error>
+            </mat-form-field>
+
+            <!-- ISBN-13 -->
+            <mat-form-field appearance="fill">
+                <mat-label>ISBN-13</mat-label>
+                <input matInput type="number" formControlName="isbn13">
+
+                <mat-error *ngIf="hasError('isbn13', 'required')">ISBN-13 is required.</mat-error>
+                <mat-error *ngIf="hasError('isbn13', 'maxlength')">ISBN-13 should have exactly 13 digits.</mat-error>
+                <mat-error *ngIf="hasError('isbn13', 'minlength')">ISBN-13 should have exactly 13 digits.</mat-error>
+                <mat-error *ngIf="hasError('isbn13', 'pattern')">ISBN-13 should have exactly 13 digits.</mat-error>
+            </mat-form-field>
+
+            <!-- Cover Image -->
+            <app-form-file-upload
+                (fileSelected)="onFileSelected($event)"
+            ></app-form-file-upload>
+
+            <!-- Options -->
+            <mat-form-field appearance="fill">
+                <mat-label>Options</mat-label>
+                <input matInput formControlName="options">
+            </mat-form-field>
+
+            <!-- Rating -->
+            <mat-form-field appearance="fill">
+                <mat-label>Rating</mat-label>
+                <input matInput type="number" formControlName="rating">
+
+                <mat-error *ngIf="hasError('rating', 'required')">Rating is required.</mat-error>
+                <mat-error *ngIf="hasError('rating', 'pattern')">Rating should be from 0 to 5.</mat-error>
+                <mat-error *ngIf="hasError('rating', 'min')">Rating should be at least 0.</mat-error>
+                <mat-error *ngIf="hasError('rating', 'max')">Rating should be at most 5.</mat-error>
+            </mat-form-field>
+    
+            <!-- Submit Button -->
+            <div class="d-flex flex-row my-4">
+                <button [disabled]="bookForm.invalid" mat-flat-button color="primary" class="input-action-btn">
+                    <mat-icon>save</mat-icon>
+                    SAVE BOOK
+                </button>
+            </div>
+
+        </div>
+    </form>
+</div>

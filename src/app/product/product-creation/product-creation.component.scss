@@ -1,0 +1,14 @@
+/* Used in the Author Name Chips */
+.author-chips-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  .author-chip {
+    background-color: rgb(237, 230, 241);
+    display: inline-flex;
+    align-items: center;
+    padding: 0 10px;
+    margin: 4px;
+    border-radius: 12px;
+  }
+}
