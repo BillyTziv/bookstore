@@ -25,3 +25,49 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# File Structure
+app
+├── app.component.html
+├── app.component.ts
+├── app.module.ts
+├── app-routing.module.ts
+├── core
+│   ├── components
+│   │   ├── form-file-upload
+│   │   │   ├── form-file-upload.component.html
+│   │   │   └── form-file-upload.component.ts
+│   ├── models
+│   │   ├── book
+│   │   │   └── book.ts
+│   │   ├── book-category
+│   │   │   └── book-category.ts
+│   │   └── filters
+│   │       └── filters.ts
+│   └── services
+│       ├── book-category
+│       │   └── book-category.service.ts
+│       ├── bookService
+│       │   └── book.service.ts
+│       └── localStorageService
+│           └── localStorage.service.ts
+├── layout
+│   ├── grid-layout
+│   │   ├── grid-layout.component.html
+│   │   └── grid-layout.component.ts
+│   ├── grid-layout-item
+│   │   ├── grid-layout-item.component.html
+│   │   └── grid-layout-item.component.ts
+│   └── item-rating
+│       ├── item-rating.component.html
+│       └── item-rating.component.ts
+└── product
+    ├── product-creation
+    │   ├── product-creation.component.html
+    │   └── product-creation.component.ts
+    ├── product-search
+    │   ├── product-search.component.html
+    │   └── product-search.component.ts
+    └── product-view
+        ├── product-view.component.html
+        └── product-view.component.ts
