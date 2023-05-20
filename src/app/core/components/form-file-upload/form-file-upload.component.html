@@ -1,0 +1,25 @@
+<div class="py-3">
+    <input (change)="onFileSelected($event)" accept=".png, .jpg, .gif, .jpeg" #fileUpload type="file" class="d-none"/>
+
+    <div class="d-flex flex-row align-items-center">
+        <div class="file-upload">
+            <button mat-mini-fab color="primary" class="upload-btn" (click)="handleFileUploadClick($event)">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
+
+        <div class="py-2 px-4">
+            <ng-container *ngIf="!uploadedImage">
+                <div class="book-cover-label">Upload your book cover</div>
+            </ng-container>
+            
+            <ng-container *ngIf="uploadedImage">
+                <img height="150" [src]="uploadedImage" alt="Book Cover Image" />
+
+                <button mat-flat-button color="primary" (click)="removeImage()" class="mx-4">Remove Image</button>
+            </ng-container>
+        </div>
+    
+    </div>
+
+</div>
