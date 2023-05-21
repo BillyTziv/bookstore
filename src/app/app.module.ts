@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule } from '@angular/material/card';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+/* Material */
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button'; 
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { MatDatepickerModule } from '@angular/material/datepicker'; 
-import { MatNativeDateModule } from '@angular/material/core'; // Import MatNativeDateModule
-
-import { AppRoutingModule } from './app-routing.module';
-
-import { AppComponent } from './app.component';
 
 /* Product-Related Components */
 import { ProductViewComponent } from './product/product-view/product-view.component';
@@ -40,7 +37,6 @@ import { RecommendedBooksComponent } from './product/recommended-books/recommend
     ProductSearchComponent,
     GridLayoutComponent,
     ItemRatingComponent,
-
     GridLayoutItemComponent,
     FormFileUploadComponent,
     RecommendedBooksComponent,
@@ -54,9 +50,6 @@ import { RecommendedBooksComponent } from './product/recommended-books/recommend
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    SlickCarouselModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
